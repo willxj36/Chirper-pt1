@@ -27,7 +27,6 @@ class Navbar extends Component {
                     <span>Welcome, {this.state.userName}</span>
                     <button onClick={this.handleClick} className="btn btn-primary">New Chirp</button>
                 </nav>
-                <NewChirpBox condition={this.state.newBox} />
             </div>
         )
     }
