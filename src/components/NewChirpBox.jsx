@@ -1,23 +1,21 @@
 import React, { Component } from 'react';
-import ChirpPanel from './ChirpPanel';
 
 class NewChirpBox extends Component {
     state = {
         nameInput: '',
         postInput: '',
         chirps: 0,
-        chirpArray: [],
     }
 
-    handleClick(name, post) {
+    handleClick = (name, post, chirps) => {
         this.setState({ chirps: this.state.chirps + 1 });
-        this.setState({ condition: false });
         let postData =
-            <div className="border border-danger rounded-lg shadow p-3 m-2" id="chirp1">
+            <div className="border border-danger rounded-lg shadow p-3 m-2" key={chirps}>
                 <h3 className="lead username">{name}</h3>
                 <p className="post">{post}</p>
             </div>;
-        this.setState({ chirpArray: [...this.state.chirpArray, postData] });
+        this.props.updateArray(postData);
+        this.props.updateBox(false);
     }
 
     handleNameInput(value) {
@@ -41,7 +39,7 @@ class NewChirpBox extends Component {
                         <input onChange={event => this.handleNameInput(event.target.value)} type="text" name="name-input" id="name-input" className="form-control" />
                         <label htmlFor="post-input" className="form-label mt-3">Write your Chirp here</label>
                         <input onChange={event => this.handlePostInput(event.target.value)} type="text" name="post-input" id="post-input" className="form-control" />
-                        <button onClick={() => this.handleClick(this.state.nameInput, this.state.postInput)} type="button" className="btn btn-primary shadow my-3">Submit Chirp!</button>
+                        <button onClick={() => this.handleClick(this.state.nameInput, this.state.postInput, this.state.chirps)} type="button" className="btn btn-primary shadow my-3">Submit Chirp!</button>
                     </form>
                 </div>
             )

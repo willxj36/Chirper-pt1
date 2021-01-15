@@ -12,13 +12,13 @@ class App extends Component {
         };
     }
 
-    updateArray(newChirp) {
+    updateArray = (newChirp) => {
         this.setState({
             array: [...this.state.array, newChirp]
         })
     }
 
-    updateBox(sharedVal) {
+    updateBox = (sharedVal) => {
         this.setState({
             newBox: sharedVal
         })
